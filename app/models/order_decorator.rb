@@ -1,9 +1,5 @@
 Spree::Order.class_eval do
 
-  ABANDONED_EMAIL_TIMEFRAME = 6.hours
-
-  preference :abandedon_email_timeframe, 6.hours
-
   def self.email_eligible_abandoned_email_orders
     eligible_abandoned_email_orders.each {|o| o.send_abandoned_email }
   end
