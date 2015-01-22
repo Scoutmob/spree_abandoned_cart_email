@@ -9,9 +9,11 @@ Spree::Order.class_eval do
             AND (payment_state IS NULL OR payment_state != ?)
             AND email is NOT NULL
             AND abandoned_email_sent_at IS NULL
+            AND abandoned_email_disabled != ?
             AND created_at < ?",
           "complete",
           "paid",
+          true,
           (Time.zone.now - Spree::AbandonedCartEmailConfig::Config.email_timeframe))
   end
 

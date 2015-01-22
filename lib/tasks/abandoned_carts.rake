@@ -1,9 +1,9 @@
 namespace :spree_abandoned_cart_email do
-  desc 'Set all existing orders as notified'
+  desc 'Disable abandoned emails on all existing orders'
   task mark_existing_orders: :environment do
-    puts "Updating exitings orders"
+    puts "Updating existing orders"
     Spree::Order.all.each do |order|
-      order.update_column(:abandoned_email_sent_at, Time.zone.now)
+      order.update_column(:abandoned_email_disabled, true)
     end
     puts "Update complete"
   end
